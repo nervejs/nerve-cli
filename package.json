@@ -1,0 +1,29 @@
+{
+  "name": "nervejs",
+  "version": "0.0.1",
+  "description": "command line interface for nervejs framework",
+  "main": "nerve.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin" : {
+    "nervejs" : "./nerve.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nervejs/nerve-cli.git"
+  },
+  "keywords": [
+    "cli",
+    "framework"
+  ],
+  "author": "denis.yarkeev@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nervejs/nerve-cli/issues"
+  },
+  "homepage": "https://github.com/nervejs/nerve-cli#readme",
+  "dependencies": {
+    "commander": "^2.8.1"
+  }
+}
