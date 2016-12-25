@@ -1,15 +1,38 @@
 #!/usr/bin/env node
 
-var templates = require('./src/templates'),
-    create = require('./src/create'),
-    options = require('commander')
-        .parse(process.argv);
+var fs = require('fs'),
+    path = require('path'),
+    spawn = require('child_process').spawn,
+    NerveCli,
+    cli;
 
-switch (options.args[0]) {
-    case 'create':
-        create.apply(this, options.args.slice(1));
-        break;
-    case 'templates':
-        templates.apply(this, options.args.slice(1));
-        break;
+function install() {
+    return new Promise((resolve, reject) => {
+        var child = spawn('npm', ['install', 'node-nerve'], {
+            cwd: process.cwd(),
+            stdio: 'inherit'
+        });
+
+        child.on('exit', resolve);
+        child.on('error', reject);
+    });
 }
+
+function checkInstalled() {
+    return new Promise((resolve, reject) => {
+        if (fs.existsSync('./node_modules/node-nerve/utils/cli')) {
+            resolve();
+        } else {
+            install()
+                .then(resolve)
+                .catch(reject);
+        }
+    });
+}
+
+checkInstalled()
+    .then(() => {
+        NerveCli = require(path.resolve(process.cwd(), './node_modules/node-nerve/utils/cli'));
+        cli = new NerveCli();
+    })
+    .catch((err) => console.error(err));
