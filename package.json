@@ -1,13 +1,15 @@
 {
   "name": "nerve-cli",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "command line interface for nervejs framework",
   "main": "nerve.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin" : {
-    "nervejs" : "./nerve.js"
+    "nervejs" : "./nervejs.js",
+    "nervejs-front" : "./nervejs-front",
+    "nervejs-node" : "./nervejs-node"
   },
   "repository": {
     "type": "git",
